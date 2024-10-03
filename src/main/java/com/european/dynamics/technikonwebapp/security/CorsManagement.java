@@ -1,4 +1,4 @@
-package com.european.dynamics.technikonwebapp.resources;
+package com.european.dynamics.technikonwebapp.security;
 
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerResponseContext;

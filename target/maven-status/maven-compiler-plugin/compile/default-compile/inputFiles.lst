@@ -9,8 +9,8 @@ C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\euro
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\repositories\PropertyRepairRepository.java
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\resources\JakartaEE10Resource.java
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\model\PropertyOwner.java
-C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\resources\CorsManagement.java
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\services\PropertyOwnerService.java
+C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\security\CorsManagement.java
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\resources\PropertyOwnerResource.java
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\JakartaRestConfiguration.java
 C:\Users\admin\Documents\NetBeansProjects\TechnikonWebApp\src\main\java\com\european\dynamics\technikonwebapp\services\PropertyService.java

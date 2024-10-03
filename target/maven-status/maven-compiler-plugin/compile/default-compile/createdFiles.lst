@@ -2,7 +2,7 @@ com\european\dynamics\technikonwebapp\model\Property.class
 com\european\dynamics\technikonwebapp\repositories\Repository.class
 com\european\dynamics\technikonwebapp\services\PropertyService.class
 com\european\dynamics\technikonwebapp\model\Admin.class
-com\european\dynamics\technikonwebapp\resources\CorsManagement.class
+com\european\dynamics\technikonwebapp\security\CorsManagement.class
 com\european\dynamics\technikonwebapp\model\PropertyOwner.class
 com\european\dynamics\technikonwebapp\resources\PropertyResource.class
 com\european\dynamics\technikonwebapp\repositories\PropertyRepository.class
