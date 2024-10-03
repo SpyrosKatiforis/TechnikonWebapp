@@ -1,8 +1,9 @@
-
 package com.european.dynamics.technikonwebapp.resources;
 
 import com.european.dynamics.technikonwebapp.model.Property;
+import com.european.dynamics.technikonwebapp.model.PropertyOwner;
 import com.european.dynamics.technikonwebapp.services.PropertyService;
+import com.european.dynamics.technikonwebapp.services.PropertyOwnerService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -17,6 +18,9 @@ public class PropertyResource {
 
     @Inject
     private PropertyService propertyService;
+
+    @Inject
+    private PropertyOwnerService propertyOwnerService; // Add PropertyOwnerService
 
     @GET
     public Response getAllProperties() {
@@ -39,25 +43,42 @@ public class PropertyResource {
 
     @POST
     public Response createProperty(Property property) {
-        propertyService.save(property);
-        return Response.status(Response.Status.CREATED).entity(property).build();
+        // Ensure the property is associated with an owner
+        if (property.getOwner() == null || property.getOwner().getOwnerId() == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Owner information is missing for the property.")
+                    .build();
+        }
+
+        // Retrieve the owner using PropertyOwnerService
+        Optional<PropertyOwner> ownerOpt = propertyOwnerService.getById(property.getOwner().getOwnerId());
+        if (ownerOpt.isPresent()) {
+            // Set the owner to the property
+            property.setOwner(ownerOpt.get());
+            propertyService.save(property);
+            return Response.status(Response.Status.CREATED).entity(property).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Owner not found with ID: " + property.getOwner().getOwnerId())
+                    .build();
+        }
     }
 
     @PUT
     @Path("/{id}")
     public Response updateProperty(@PathParam("id") Long id, Property updatedProperty) {
-    Optional<Property> existingPropertyOpt = propertyService.getById(id);
-    if (existingPropertyOpt.isPresent()) {
-        Property existingProperty = existingPropertyOpt.get();
-        existingProperty.setAddress(updatedProperty.getAddress());
-        existingProperty.setYearOfConstruction(updatedProperty.getYearOfConstruction());
-        existingProperty.setPropertyType(updatedProperty.getPropertyType());
-        propertyService.update(existingProperty);
-        return Response.ok(existingProperty).build();
-    } else {
-        return Response.status(Response.Status.NOT_FOUND)
-                .entity("Property not found with ID: " + id)
-                .build();
+        Optional<Property> existingPropertyOpt = propertyService.getById(id);
+        if (existingPropertyOpt.isPresent()) {
+            Property existingProperty = existingPropertyOpt.get();
+            existingProperty.setAddress(updatedProperty.getAddress());
+            existingProperty.setYearOfConstruction(updatedProperty.getYearOfConstruction());
+            existingProperty.setPropertyType(updatedProperty.getPropertyType());
+            propertyService.update(existingProperty);
+            return Response.ok(existingProperty).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Property not found with ID: " + id)
+                    .build();
         }
     }
 
@@ -75,7 +96,6 @@ public class PropertyResource {
         }
     }
 
-    // Additional endpoints
     @GET
     @Path("/owner/{ownerId}")
     public Response getPropertiesByOwnerId(@PathParam("ownerId") Long ownerId) {

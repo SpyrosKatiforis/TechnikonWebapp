@@ -89,4 +89,18 @@ public class PropertyOwnerResource {
                     .build();
         }
     }
+    
+    @POST
+    @Path("/login")
+    public Response loginOwner(@QueryParam("username") String username, @QueryParam("password") String password) {
+    Optional<PropertyOwner> ownerOpt = propertyOwnerService.findOwnerByUsername(username);
+    if (ownerOpt.isPresent()) {
+        PropertyOwner owner = ownerOpt.get();
+        if (propertyOwnerService.validatePropertyOwnerPassword(password, owner)) {
+            return Response.ok(owner).build();  // Success, return the property owner object
+        }
+    }
+    return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid username or password").build();
+}
+
 }

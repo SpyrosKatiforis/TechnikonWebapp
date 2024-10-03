@@ -76,5 +76,17 @@ public class AdminResource {
         }
     }
 
-    // Additional endpoints as needed
+    @POST
+    @Path("/login")
+    public Response loginAdmin(@QueryParam("username") String username, @QueryParam("password") String password) {
+        Optional<Admin> adminOpt = adminService.findAdminByUsername(username);
+        if (adminOpt.isPresent()) {
+            Admin admin = adminOpt.get();
+            if (adminService.validateAdminPassword(password, admin)) {
+                return Response.ok(admin).build();  // Success, return the admin object
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid username or password").build();
+    }
+
 }
