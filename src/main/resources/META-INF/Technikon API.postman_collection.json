@@ -1,0 +1,581 @@
+{
+	"info": {
+		"_postman_id": "e6f8bbbf-57a0-4f47-89d7-7a29718a6933",
+		"name": "Technikon API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38397347"
+	},
+	"item": [
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "CreateAdmin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin1\",\r\n  \"email\": \"admin1@example.com\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admins",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAdmins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admins",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAdmin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin1_updated\",\r\n  \"email\": \"admin1_updated@example.com\",\r\n  \"password\": \"newpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admins/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAdminById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admins/{{admin_id}}?admin_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admins",
+								"{{admin_id}}"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAdmin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admins/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PropertyOwners",
+			"item": [
+				{
+					"name": "CreateNewPropertyOwner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"owner1\",\r\n    \"email\": \"owner1@example.com\",\r\n    \"password\": \"password123\",\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"address\": \"123 Main St\",\r\n    \"phoneNumber\": \"1234567890\",\r\n    \"vatNumber\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/owners",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPropertyOwners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/owners",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePropertyOwner",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"owner1_updated\",\r\n  \"email\": \"owner1_updated@example.com\",\r\n  \"password\": \"newpassword123\",\r\n  \"name\": \"John\",\r\n  \"surname\": \"Doe\",\r\n  \"address\": \"123 Main St\",\r\n  \"phoneNumber\": \"0987654321\",\r\n  \"vatNumber\": \"987654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/owners/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"owners",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPropertyOwnerbyID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/owners/?owner_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"owners",
+								""
+							],
+							"query": [
+								{
+									"key": "owner_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePropertyOwner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/owners/delete/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"owners",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Properties",
+			"item": [
+				{
+					"name": "CreateNewProperty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": \"456 Elm St\",\r\n  \"yearOfConstruction\": 2000,\r\n  \"propertyType\": \"APARTMENT\",\r\n  \"owner\": {\r\n    \"ownerId\": 1\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/properties",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProperties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/properties",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePropery",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": \"456 Elm St, Apt 2\",\r\n  \"yearOfConstruction\": 2000,\r\n  \"propertyType\": \"APARTMENT\",\r\n  \"owner\": {\r\n    \"ownerId\": 1\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/properties/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"properties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPropertybyID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/properties/?property_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"properties",
+								""
+							],
+							"query": [
+								{
+									"key": "property_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProperty",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/properties/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"properties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PropertyRepairs",
+			"item": [
+				{
+					"name": "CreateNewRepair",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"repairType\": \"PLUMBING\",\r\n    \"shortDescription\": \"Leaky faucet\",\r\n    \"dateSubmitted\": \"2024-10-03T15:00:00\",\r\n    \"description\": \"The kitchen faucet is leaking.\",\r\n    \"status\": \"PENDING\",\r\n    \"property\": {\r\n        \"propertyId\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/repairs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllRepairs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRepair",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"repairType\": \"PLUMBING\",\r\n  \"shortDescription\": \"Leaky faucet (updated)\",\r\n  \"dateSubmitted\": \"2024-10-03T15:00:00\",\r\n  \"description\": \"The kitchen faucet is leaking heavily.\",\r\n  \"proposedStartDate\": \"2024-10-05T09:00:00\",\r\n  \"proposedEndDate\": \"2024-10-05T12:00:00\",\r\n  \"proposedCost\": 150.0,\r\n  \"ownerAcceptance\": true,\r\n  \"status\": \"IN_PROGRESS\",\r\n  \"actualStartDate\": \"2024-10-05T09:15:00\",\r\n  \"actualEndDate\": null,\r\n  \"property\": {\r\n    \"propertyId\": 1\r\n  },\r\n  \"owner\": {\r\n    \"ownerId\": 1\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/repairs/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRepairbyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/properties/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"properties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRepair",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRepairsbyStatus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs/status/IN_PROGRESS",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								"status",
+								"IN_PROGRESS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRepairsbyDateRange",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs/date-range?startDate=2024-10-01T00:00:00&endDate=2024-10-31T23:59:59",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-10-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-10-31T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRepairsbyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs/property/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								"property",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
