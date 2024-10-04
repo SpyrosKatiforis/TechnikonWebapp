@@ -20,7 +20,7 @@ public class PropertyResource {
     private PropertyService propertyService;
 
     @Inject
-    private PropertyOwnerService propertyOwnerService; // Add PropertyOwnerService
+    private PropertyOwnerService propertyOwnerService;
 
     @GET
     public Response getAllProperties() {
@@ -43,26 +43,26 @@ public class PropertyResource {
 
     @POST
     public Response createProperty(Property property) {
-        // Ensure the property is associated with an owner
-        if (property.getOwner() == null || property.getOwner().getOwnerId() == null) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Owner information is missing for the property.")
-                    .build();
-        }
-
-        // Retrieve the owner using PropertyOwnerService
-        Optional<PropertyOwner> ownerOpt = propertyOwnerService.getById(property.getOwner().getOwnerId());
-        if (ownerOpt.isPresent()) {
-            // Set the owner to the property
-            property.setOwner(ownerOpt.get());
-            propertyService.save(property);
-            return Response.status(Response.Status.CREATED).entity(property).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Owner not found with ID: " + property.getOwner().getOwnerId())
-                    .build();
-        }
+    if (property.getOwner() == null || property.getOwner().getOwnerId() == null) {
+        return Response.status(Response.Status.BAD_REQUEST)
+                .entity("Owner information is missing for the property.")
+                .build();
     }
+
+    // Ensurινγ the owner is attached to the persistence context
+    Optional<PropertyOwner> ownerOpt = propertyOwnerService.getById(property.getOwner().getOwnerId());
+    if (ownerOpt.isPresent()) {
+        PropertyOwner managedOwner = ownerOpt.get();  // Fetchινγ owner from DB, ensuring it's attached
+        property.setOwner(managedOwner);  // Αttachινγ the managed owner to the property
+
+        propertyService.save(property);
+        return Response.status(Response.Status.CREATED).entity(property).build();
+    } else {
+        return Response.status(Response.Status.NOT_FOUND)
+                .entity("Owner not found with ID: " + property.getOwner().getOwnerId())
+                .build();
+    }
+}
 
     @PUT
     @Path("/{id}")

@@ -1,4 +1,3 @@
-
 package com.european.dynamics.technikonwebapp.resources;
 
 import com.european.dynamics.technikonwebapp.model.PropertyOwner;
@@ -52,7 +51,9 @@ public class PropertyOwnerResource {
             existingOwner.setUsername(updatedOwner.getUsername());
             existingOwner.setEmail(updatedOwner.getEmail());
             existingOwner.setPassword(updatedOwner.getPassword());
-            // Update other fields as necessary
+            existingOwner.setAddress(updatedOwner.getAddress());
+            existingOwner.setPhoneNumber(updatedOwner.getPhoneNumber());
+            existingOwner.setVatNumber(updatedOwner.getVatNumber());
             propertyOwnerService.update(existingOwner);
             return Response.ok(existingOwner).build();
         } else {
@@ -76,31 +77,24 @@ public class PropertyOwnerResource {
         }
     }
 
-    // Additional endpoints
-    @GET
-    @Path("/username/{username}")
-    public Response getOwnerByUsername(@PathParam("username") String username) {
+    @POST
+    @Path("/login")
+    public Response loginOwner(@QueryParam("username") String username, @QueryParam("password") String password) {
         Optional<PropertyOwner> ownerOpt = propertyOwnerService.findOwnerByUsername(username);
         if (ownerOpt.isPresent()) {
-            return Response.ok(ownerOpt.get()).build();
+            PropertyOwner owner = ownerOpt.get();
+            boolean isValid = propertyOwnerService.validatePropertyOwnerPassword(password, owner);
+            if (isValid) {
+                return Response.ok(owner).build();
+            } else {
+                return Response.status(Response.Status.UNAUTHORIZED)
+                        .entity("Invalid credentials")
+                        .build();
+            }
         } else {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("PropertyOwner not found with username: " + username)
                     .build();
         }
     }
-    
-    @POST
-    @Path("/login")
-    public Response loginOwner(@QueryParam("username") String username, @QueryParam("password") String password) {
-    Optional<PropertyOwner> ownerOpt = propertyOwnerService.findOwnerByUsername(username);
-    if (ownerOpt.isPresent()) {
-        PropertyOwner owner = ownerOpt.get();
-        if (propertyOwnerService.validatePropertyOwnerPassword(password, owner)) {
-            return Response.ok(owner).build();  // Success, return the property owner object
-        }
-    }
-    return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid username or password").build();
-}
-
 }
